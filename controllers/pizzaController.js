@@ -32,9 +32,11 @@ exports.createOrder = (req, res) => {
     );
 };
 
-// Update order
+const connection = require('../config/db');
+
+// UPDATE
 exports.updateOrder = (req, res) => {
-    const id = req.params.id; 
+    const id = req.params.id;  // ✅ use ID from URL
     const { customer_name, pizza_type, size, quantity, instructions } = req.body;
 
     connection.query(
@@ -47,9 +49,9 @@ exports.updateOrder = (req, res) => {
     );
 };
 
-// Delete order
+// DELETE
 exports.deleteOrder = (req, res) => {
-    const id = req.params.id; 
+    const id = req.params.id;  // ✅ use ID from URL
 
     connection.query(
         "DELETE FROM pizza_orders WHERE id=?",
